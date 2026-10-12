@@ -22,8 +22,6 @@
 
 Mixsmith misst Referenzsongs Spur für Spur und überträgt Balance, Klang, Dynamik, Stereobreite sowie Hall und Delay auf den eigenen Song. Alles läuft lokal auf dem eigenen Rechner, ohne Konto und ohne Upload.
 
-**Hörbeispiel und Projektseite:** [kieselwerk.pages.dev/mixsmith](https://kieselwerk.pages.dev/mixsmith/)
-
 ## Was Mixsmith kann
 
 | Bereich | Was er tut |
@@ -95,5 +93,5 @@ Mixsmith gleicht Messgrößen an, es hört nicht. Bei sehr unterschiedlichem Mat
 
 ## Lizenz
 
-Copyright © 2026 Kay Seufferheld, [Kieselwerk](https://kieselwerk.pages.dev).
+Copyright © 2026 Kay Seufferheld, Kieselwerk.
 Mixsmith ist freie Software unter der [GNU General Public License v3](LICENSE). Alle Bibliotheken, KI-Modelle und ihre Lizenzen stehen in [LIZENZEN.md](LIZENZEN.md).
