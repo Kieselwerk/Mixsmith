@@ -17,3 +17,5 @@ tutorial/screens/
 tutorial/voices/*.onnx
 tutorial/voices/*.onnx.json
 *.wav
+build_setup/
+dist_setup/

@@ -5,6 +5,7 @@
   python build.py full      -> installer/Mixsmith-<ver>-Setup.exe (Vollversion mit KI, PyInstaller onedir + Inno Setup)
   python build.py msi       -> dist/Mixsmith-<ver>-win64.msi (ohne KI, cx_Freeze)
   python build.py source    -> installer/Mixsmith-<ver>-Quelltext.zip (vollständiger Quelltext, GPLv3)
+  python build.py setup     -> installer/Mixsmith-<ver>-Windows-Setup.exe (ohne KI, Installer im Kieselwerk-Stil)
 """
 import os, sys, shutil, subprocess, re, zipfile
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
@@ -37,12 +38,22 @@ def full():
     iscc = os.path.join(os.environ["LOCALAPPDATA"], "Programs", "Inno Setup 6", "ISCC.exe")
     run([iscc, "/DAppVersion=" + VER, "setup_inno.iss"])
 
+def setup():
+    """Light version as onedir (starts faster than onefile) in an Inno Setup installer with Kieselwerk wizard pictures."""
+    cmd = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--onedir", "--windowed", "--name", NAME, "--icon", "logo.ico",
+           *DATA, "--add-data", "profiles;profiles", "--collect-all", "soundfile", "--collect-all", "sounddevice", "--collect-all", "pedalboard",
+           "--hidden-import", "pyloudnorm", "--hidden-import", "mix_core", "--distpath", "dist_setup", "--workpath", "build_setup"]
+    for m in LIGHT_EXCLUDES: cmd += ["--exclude-module", m]
+    run(cmd + ["mixsmith.py"])
+    iscc = os.path.join(os.environ["LOCALAPPDATA"], "Programs", "Inno Setup 6", "ISCC.exe")
+    run([iscc, "/DAppVersion=" + VER, os.path.join("packaging", "windows", "setup_windows.iss")])
+
 def msi():
     run([sys.executable, "setup_cx.py", "bdist_msi"])
 
 SOURCE = ["audio_core.py", "mix_core.py", "mixsmith_gui.py", "mixsmith.py", "build.py", "make_logo.py", "setup_cx.py", "setup_inno.iss", "requirements.txt",
           "README.md", "LICENSE", "LIZENZEN.md", "logo.ico", "logo.png", "logo_1024.png", "profiles", "packaging", ".github",
-          "tutorial/capture_screens.py", "tutorial/make_tutorial.py", "tutorial/mascot.py", "tutorial/Mixsmith-Tutorial.json"]
+          "docs", "tutorial/capture_screens.py", "tutorial/make_tutorial.py", "tutorial/mascot.py", "tutorial/Mixsmith-Tutorial.json"]
 
 def source():
     """Complete corresponding source for the GPLv3 (offered next to every download)."""
@@ -54,4 +65,4 @@ def source():
     print("Quelltext:", out)
 
 if __name__ == "__main__":
-    for t in sys.argv[1:] or ["light"]: {"light": light, "full": full, "msi": msi, "source": source}[t]()
+    for t in sys.argv[1:] or ["light"]: {"light": light, "full": full, "msi": msi, "source": source, "setup": setup}[t]()

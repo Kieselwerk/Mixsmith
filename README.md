@@ -49,13 +49,12 @@ Mixsmith ist kostenlos. Wer die Entwicklung unterstützen möchte, kann beim Dow
 
 | Paket | Inhalt |
 |---|---|
-| **Windows, leichte Version** (`Mixsmith.exe`) | Mixing von Einzelspuren, Mastering, Spur-Angleich. Ohne KI, portabel, keine Installation. |
-| **Windows, Vollversion** (`Mixsmith-1.0.1-Setup.exe`) | Alles inklusive KI-Trennung (PyTorch für Grafikkarte und Prozessor). |
-| **Linux** (`Mixsmith-1.0.1-Linux.tar.gz`) | `./install.sh`, mit KI: `./install.sh --ki` |
-| **macOS** (`Mixsmith-1.0.1-macOS.zip`) | Rechtsklick auf „Mixsmith installieren.command“ → „Öffnen“. Python 3.10 oder neuer. |
+| **Windows** (`Mixsmith-1.0.1-Windows-Setup.exe`) | Installer für Mixing von Einzelspuren, Mastering und Spur-Angleich. Ohne KI-Trennung. |
+| **Linux** (`Mixsmith-1.0.1-Linux.tar.gz`) | `./install.sh`, mit KI-Trennung: `./install.sh --ki` |
+| **macOS** (`Mixsmith-1.0.1-macOS.zip`) | Rechtsklick auf „Mixsmith installieren.command“ → „Öffnen“, fragt nach der KI-Trennung. Python 3.10 oder neuer. |
 | **Quelltext** (`Mixsmith-1.0.1-Quelltext.zip`) | Dieser Stand des Repositorys. |
 
-**KI-Modelle:** Mitgeliefert wird nur Demucs. Die übrigen Modelle (BS-RoFormer SW, De-Reverb, De-Echo, DrumSep) lädt Mixsmith beim ersten Einsatz einmalig aus den Quellen ihrer Autoren herunter. Danach läuft alles offline.
+**KI-Trennung:** Die KI-Software (PyTorch und audio-separator, etwa 3 GB) installieren die Linux- und macOS-Installer auf Wunsch mit. Unter Windows lässt sie sich aus dem Quelltext nachrüsten (siehe unten). Die KI-Modelle lädt Mixsmith beim ersten Einsatz einmalig aus den Quellen ihrer Autoren herunter. Danach läuft alles offline.
 
 ## Systemanforderungen
 
@@ -79,8 +78,9 @@ python mixsmith.py
 Für die KI-Trennung zusätzlich `pip install "audio-separator[gpu]"` (NVIDIA) oder `"audio-separator[cpu]"`.
 
 ```bash
-python build.py light      # Mixsmith.exe ohne KI
-python build.py full       # Windows-Setup mit KI (PyInstaller + Inno Setup 6)
+python build.py setup      # Windows-Installer ohne KI (PyInstaller + Inno Setup 6)
+python build.py light      # Mixsmith.exe ohne KI, portabel
+python build.py full       # Windows-Setup mit KI (rund 3 GB)
 python build.py source     # Quelltext-Zip
 python packaging/make_unix_packages.py   # Linux- und macOS-Pakete
 ```
