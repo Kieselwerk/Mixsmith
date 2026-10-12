@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://kieselwerk.itch.io/mixsmith"><img alt="Download auf itch.io" src="https://img.shields.io/badge/Download-itch.io-256C70?style=flat-square"></a>
+  <a href="https://www.paypal.com/donate/?business=kay.seufferheld%40gmx.de&currency_code=EUR&item_name=Mixsmith"><img alt="Spenden per PayPal" src="https://img.shields.io/badge/Spenden-PayPal-B5793A?style=flat-square"></a>
   <a href="LICENSE"><img alt="Lizenz GPLv3" src="https://img.shields.io/badge/Lizenz-GPLv3-1F2422?style=flat-square"></a>
   <img alt="Version 1.0.1" src="https://img.shields.io/badge/Version-1.0.1-A8A196?style=flat-square">
   <img alt="Windows, Linux, macOS" src="https://img.shields.io/badge/Plattform-Windows%20%C2%B7%20Linux%20%C2%B7%20macOS-A8A196?style=flat-square">
@@ -55,6 +56,20 @@ Mixsmith ist kostenlos. Wer die Entwicklung unterstützen möchte, kann beim Dow
 | **Quelltext** (`Mixsmith-1.0.1-Quelltext.zip`) | Dieser Stand des Repositorys. |
 
 **KI-Trennung:** Die KI-Software (PyTorch und audio-separator, etwa 3 GB) installieren die Linux- und macOS-Installer auf Wunsch mit. Unter Windows lässt sie sich aus dem Quelltext nachrüsten (siehe unten). Die KI-Modelle lädt Mixsmith beim ersten Einsatz einmalig aus den Quellen ihrer Autoren herunter. Danach läuft alles offline.
+
+### Warum warnen Windows und macOS beim ersten Start?
+
+Mixsmith ist noch nicht digital signiert. Windows meldet deshalb „Der Computer wurde durch Windows geschützt“, macOS einen nicht verifizierten Entwickler. Das ist keine Virenmeldung: Der komplette Quelltext liegt hier offen, und die Installer baut GitHub direkt aus diesem Repository.
+
+Eine Signatur kostet Geld, das ich als Einzelentwickler selbst bezahlen müsste: etwa 50 bis 70 € im Jahr für ein Windows-Zertifikat und 99 $ im Jahr für das Apple-Entwicklerkonto. Spenden fließen zuerst in diese Signaturen, dann verschwinden die Warnungen.
+
+- **Windows:** „Weitere Informationen“ → „Trotzdem ausführen“.
+- **macOS 15 und neuer:** Mixsmith einmal öffnen, dann Systemeinstellungen → Datenschutz & Sicherheit → „Dennoch öffnen“. Bis macOS 14: Rechtsklick → „Öffnen“.
+- **Linux:** keine Warnung. Das AppImage einmal ausführbar machen.
+
+### Unterstützen
+
+Mixsmith ist kostenlos. Wer die Entwicklung und die Signaturen unterstützen möchte: [per PayPal spenden](https://www.paypal.com/donate/?business=kay.seufferheld%40gmx.de&currency_code=EUR&item_name=Mixsmith) oder beim Download auf [itch.io](https://kieselwerk.itch.io/mixsmith).
 
 ## Systemanforderungen
 
