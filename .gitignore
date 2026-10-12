@@ -19,3 +19,4 @@ tutorial/voices/*.onnx.json
 *.wav
 build_setup/
 dist_setup/
+packaging/windows/version_info.txt

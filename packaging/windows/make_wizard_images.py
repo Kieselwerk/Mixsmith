@@ -27,8 +27,7 @@ def big(w, h):
     return bg.convert("RGB")
 
 for w, h in [(164, 314), (205, 393), (246, 471), (328, 628)]:          # 100, 125, 150, 200 % display scaling
-    big(w, h).save(os.path.join(HERE, "wizard_%d.bmp" % w))
-for s in [55, 69, 83, 110]:
-    im = Image.new("RGB", (s, s), (255, 255, 255)); a = app.resize((s, s), Image.LANCZOS); im.paste(a, (0, 0), a)
-    im.save(os.path.join(HERE, "wizard_small_%d.bmp" % s))
+    big(w, h).convert("RGBA").save(os.path.join(HERE, "wizard_%d.bmp" % w))       # 32 bit (WizardImageAlphaFormat=defined)
+for s in [55, 69, 83, 110]:                                                       # header picture, transparent on the petrol header
+    app.resize((s, s), Image.LANCZOS).save(os.path.join(HERE, "wizard_small_%d.bmp" % s))
 print("ok")

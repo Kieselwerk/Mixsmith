@@ -40,9 +40,11 @@ def full():
 
 def setup():
     """Light version as onedir (starts faster than onefile) in an Inno Setup installer with Kieselwerk wizard pictures."""
+    run([sys.executable, os.path.join("packaging", "windows", "version_info.py")])
     cmd = [sys.executable, "-m", "PyInstaller", "--noconfirm", "--onedir", "--windowed", "--name", NAME, "--icon", "logo.ico",
            *DATA, "--add-data", "profiles;profiles", "--collect-all", "soundfile", "--collect-all", "sounddevice", "--collect-all", "pedalboard",
-           "--hidden-import", "pyloudnorm", "--hidden-import", "mix_core", "--distpath", "dist_setup", "--workpath", "build_setup"]
+           "--hidden-import", "pyloudnorm", "--hidden-import", "mix_core", "--distpath", "dist_setup", "--workpath", "build_setup",
+           "--version-file", os.path.join("packaging", "windows", "version_info.txt")]
     for m in LIGHT_EXCLUDES: cmd += ["--exclude-module", m]
     run(cmd + ["mixsmith.py"])
     iscc = os.path.join(os.environ["LOCALAPPDATA"], "Programs", "Inno Setup 6", "ISCC.exe")

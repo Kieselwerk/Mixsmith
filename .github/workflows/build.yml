@@ -47,7 +47,10 @@ jobs:
         run: |
           SEP=":"; [ "$RUNNER_OS" = "Windows" ] && SEP=";"
           ICON=logo.png; [ "$RUNNER_OS" = "Windows" ] && ICON=logo.ico
-          pyinstaller --noconfirm --windowed --onedir --name Mixsmith --icon "$ICON" --distpath dist_setup \
+          EXTRA=""
+          if [ "$RUNNER_OS" = "Windows" ]; then python packaging/windows/version_info.py; EXTRA="--version-file packaging/windows/version_info.txt"; fi
+          if [ "$RUNNER_OS" = "macOS" ]; then EXTRA="--osx-bundle-identifier de.kieselwerk.mixsmith"; fi
+          pyinstaller --noconfirm --windowed --onedir --name Mixsmith --icon "$ICON" --distpath dist_setup $EXTRA \
             --add-data "logo.png${SEP}." --add-data "logo.ico${SEP}." --add-data "README.md${SEP}." --add-data "LICENSE${SEP}." --add-data "LIZENZEN.md${SEP}." \
             --add-data "profiles${SEP}profiles" --add-data "tutorial/Mixsmith-Tutorial.mp4${SEP}tutorial" --add-data "tutorial/Mixsmith-Tutorial.json${SEP}tutorial" \
             --collect-all soundfile --collect-all sounddevice --collect-all pedalboard --hidden-import pyloudnorm --hidden-import mix_core \
@@ -67,6 +70,7 @@ jobs:
           mkdir -p $APP/usr/bin $APP/usr/share/icons/hicolor/256x256/apps
           cp -r dist_setup/Mixsmith/. $APP/usr/bin/
           cp packaging/linux/mixsmith.desktop $APP/
+          mkdir -p $APP/usr/share/metainfo && sed "s/@VER@/$VER/" packaging/linux/de.kieselwerk.mixsmith.metainfo.xml > $APP/usr/share/metainfo/de.kieselwerk.mixsmith.metainfo.xml
           python -c "from PIL import Image; Image.open('logo_1024.png').resize((256,256)).save('$APP/mixsmith.png')"
           cp $APP/mixsmith.png $APP/usr/share/icons/hicolor/256x256/apps/
           printf '#!/bin/sh\nHERE="$(dirname "$(readlink -f "$0")")"\nexec "$HERE/usr/bin/Mixsmith" "$@"\n' > $APP/AppRun
@@ -77,6 +81,13 @@ jobs:
       - name: Disk image (macOS)
         if: runner.os == 'macOS'
         run: |
+          PL=dist_setup/Mixsmith.app/Contents/Info.plist
+          plutil -replace CFBundleShortVersionString -string "$VER" "$PL"
+          plutil -replace CFBundleVersion -string "$VER" "$PL"
+          plutil -replace CFBundleDisplayName -string "Mixsmith" "$PL"
+          plutil -replace NSHumanReadableCopyright -string "© 2026 Kay Seufferheld, Kieselwerk, Augsburg. GNU GPLv3." "$PL"
+          plutil -replace LSApplicationCategoryType -string "public.app-category.music" "$PL"
+          codesign --force --deep --sign - dist_setup/Mixsmith.app
           brew install create-dmg
           tiffutil -cathidpicheck packaging/macos/dmg_background.png "packaging/macos/dmg_background@2x.png" -out dmg_background.tiff
           create-dmg --volname "Mixsmith" --background dmg_background.tiff --window-pos 200 120 --window-size 660 400 \
