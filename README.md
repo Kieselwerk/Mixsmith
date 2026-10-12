@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://kieselwerk.itch.io/mixsmith"><img alt="Download auf itch.io" src="https://img.shields.io/badge/Download-itch.io-256C70?style=flat-square"></a>
-  <a href="https://www.paypal.com/donate/?business=kay.seufferheld%40gmx.de&currency_code=EUR&item_name=Mixsmith"><img alt="Spenden per PayPal" src="https://img.shields.io/badge/Spenden-PayPal-B5793A?style=flat-square"></a>
+  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kay.seufferheld%40gmx.de&item_name=Spende+f%C3%BCr+Mixsmith&currency_code=EUR&no_shipping=1"><img alt="Spenden per PayPal" src="https://img.shields.io/badge/Spenden-PayPal-B5793A?style=flat-square"></a>
   <a href="LICENSE"><img alt="Lizenz GPLv3" src="https://img.shields.io/badge/Lizenz-GPLv3-1F2422?style=flat-square"></a>
   <img alt="Version 1.0.1" src="https://img.shields.io/badge/Version-1.0.1-A8A196?style=flat-square">
   <img alt="Windows, Linux, macOS" src="https://img.shields.io/badge/Plattform-Windows%20%C2%B7%20Linux%20%C2%B7%20macOS-A8A196?style=flat-square">
@@ -69,7 +69,7 @@ Eine Signatur kostet Geld, das ich als Einzelentwickler selbst bezahlen müsste:
 
 ### Unterstützen
 
-Mixsmith ist kostenlos. Wer die Entwicklung und die Signaturen unterstützen möchte: [per PayPal spenden](https://www.paypal.com/donate/?business=kay.seufferheld%40gmx.de&currency_code=EUR&item_name=Mixsmith) oder beim Download auf [itch.io](https://kieselwerk.itch.io/mixsmith).
+Mixsmith ist kostenlos. Wer die Entwicklung und die Signaturen unterstützen möchte: [per PayPal spenden](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=kay.seufferheld%40gmx.de&item_name=Spende+f%C3%BCr+Mixsmith&currency_code=EUR&no_shipping=1) oder beim Download auf [itch.io](https://kieselwerk.itch.io/mixsmith).
 
 ## Systemanforderungen
 
